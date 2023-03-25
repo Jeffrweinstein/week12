@@ -24,6 +24,7 @@ private TestDemo testDemo;
 }
 @ParameterizedTest
 
+
 @MethodSource("TestDemoTest#argumentsForAddPositive")
 	void assertThatTwoPositiveNumbersAreAddedCorrectly(int a, int b, int expected, Boolean expectException) {
 	if(!expectException) {
@@ -34,9 +35,10 @@ private TestDemo testDemo;
 		assertThatThrownBy(() -> 
 		testDemo.addPositive(a, b))
 		.isInstanceOf(IllegalArgumentException.class);
+		
 	}
 }
-static Stream<Arguments> argumentsForAddPositive() {
+	static Stream<Arguments> argumentsForAddPositive() {
 //@formatter:off
 	return Stream.of(
 	arguments(2, 4, 6, false),
@@ -44,12 +46,14 @@ static Stream<Arguments> argumentsForAddPositive() {
 	arguments(-1, 2, 1, true),
 	arguments(0, 5, 5, true),
 	arguments(11, 0, 11, true),
-	arguments(0, 0, 0, true)//,
-//	arguments(12, 12, 25, false)
+	arguments(0, 0, 0, true)
+	
 );
 //@formatter:on
 }
+	
 @Test
+
 void assertThatNumberSquaredIsCorrect() {
 TestDemo mockDemo = spy(testDemo);
 doReturn(5).when(mockDemo).getRandomInt();
